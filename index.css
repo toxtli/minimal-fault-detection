@@ -1,0 +1,51 @@
+body, html {
+	font-family: 'Varela Round', sans-serif;
+	font-size: 18px;
+}
+
+#mainContainer {
+	max-width: 800px;
+}
+
+.content {
+	text-align: justify;
+}
+
+.search {
+	border-radius: 5px;
+	height: 32px;
+    font-size: 24pt;
+    text-align: center;
+    color: #333333;
+}
+
+#varsDict {
+	font-size: 20pt;
+	color: blue;
+}
+
+#equation {
+	text-align: center;
+	font-size: 20pt;
+	font-weight: bold;
+	color: blue;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+sub {
+	font-weight: normal;
+}

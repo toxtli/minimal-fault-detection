@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Faults Detection</title>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+		<link href="index.css" rel="stylesheet">
+		<script src="index.js"></script>
+	</head>
+	<body>
+		<center>
+			<div id="mainContainer">
+				<h1>Minimal fault-detection</h1>
+				<input class="search" id="eq" size="50" value="wz' + xy' + w'x + wx'y">
+				<br>
+				Step by step <input type="checkbox" id="stepByStep" checked>
+				<br>
+				<button onclick="showFaults(document.getElementById('eq').value);" class='w3-btn w3-block w3-teal' id='calculate'>CALCULATE</button>
+				<br>
+				<div class="content">
+					<b>Instructions</b>: Enter in the box the function to solve, it supports PoS (Product of Sums) and SoP (Sum of Products) functions. This is an N-Variable solver.
+				</div>
+				<div>
+					<pre>
+Some examples:
+BC + B'C'D + ABE + A'BD'E'
+A'B' + B'C'D + ABCD
+w'y' + y'z + wxz + xyz'
+wz' + xy' + w'x + wx'y
+(w + x')(x' + z')(w' + y + z')
+(A + B + D' + E)(A' + D' + E')(B' + C + D)(C' + D')
+					</pre>
+				</div>
+				<div id="content" hidden>
+					<div class="detailed" id="introduction" hidden>
+						<hr>
+						<h2>INTRODUCTION</h2>
+						<div class="content">
+							The concepts of fault modeling, detection, testing, and tolerance have become very important for logic designers. The drastic increase of components in a single chip and as a result of increase in the chip density the probability of fault ocurring also increased.
+							<br><br>
+							In this work we are presenting a system based in the stuck-at-faults model that assumes that a fault in a logic gate results in one of its inputs or the output is fixed at either a logic 0 (s-a-0) or at logic 1 (s-a-1).
+							<br><br>
+							The stuck-at model was implemented in this work to represent multiple faults in circuits. In a multiple stuck-at-fault, it is assumed that more than one signal line in this circuit are stuck at logic 1 or logic 0. In other words, a group of stuck-at faults exist in the circuit at the same time.
+							<br><br>
+						</div>
+						<hr>
+						<h2>METHODOLOGY</h2>
+						<div class="content">
+							In order to demonstrate how the tool works, we use Karnaugh Maps to better visualize it. This algorithm supports N-variables and can be used for solving SoP (Sum of Products) or PoS (Product of Sum). 
+							<br><br>
+							The given example is:
+							<br>
+							<br>
+							<div id="equation"></div>
+							<br>
+							Then we proceed to extract the variables and to draw the Karnaugh Map.
+						</div>
+					</div>
+					<hr>
+					<h3>VARIABLES</h3>
+					<div class="content">
+						The variables defined in the network are:
+					</div>
+					<div id="varsDict"></div>
+					<hr>
+					<h3>KARNAUGH MAP</h3>
+					<div class="content">
+						The Karnaugh Map represents all the blocks. The cells with 2 or more colors represent the intersections between blocks.
+					</div>
+					<div id="blocks"></div>
+					<hr>
+					<u><h3 id="testNameA">A-TEST</h3></u>
+					<div class="detailed" id="detailsTestA" hidden>
+						<h4>Steps</h4>
+						<div class="content">
+							Find the cells on each block that are not covered by other blocks. The cells in blue re[represent the current block, the cells in gray the other blocks, and the cells in red the faults.
+						</div>
+						<div id="testAStep1"></div>
+					</div>
+					<h4>RESULTS</h4>
+					<div class="result"><span id="resultA"></span></div>
+					<button onclick="generateTestA();">Generate another combination</button>
+					<div id="tableA"></div>
+					<hr>
+					<u><h3 id="testNameB">B-TEST</h3></u>
+					<div class="detailed" id="detailsTestB" hidden>
+						<h4>Steps</h4>
+						<div class="content">
+							Find the adjacent cells for each of the blocks and remove the elements that are covered from other blocks. The cells in blue represent the current block, the cells in gray the other blocks, and the cells in other colors the sets of faults.
+						</div>
+						<div id="testBStep1"></div>
+						<br>
+						<div class="content">
+							Then we remove all the fault cases that are covered by others. This is the order in which the faults are being covered:
+						</div>
+						<div id="testBStep2"></div>
+					</div>
+					<h4>RESULTS</h4>
+					<div class="result"><span id="resultB"></span></div>
+					<button onclick="generateTestB();">Generate another combination</button>
+					<div id="tableB"></div>
+					<hr>
+					<u><h3>ALL THE TEST</h3></u>
+					<h4>RESULTS</h4>
+					<div class="result"><span id="resultAll"></span></div>
+					<button onclick="generateTestAll();">Generate another combination</button>
+					<div id="tableAll"></div>				
+				</div>
+				<hr>
+				<h2>ACKNOWLEDGMENTS</h2>
+				<div class="content">
+					I want to thank Dr Klink Klinkhachorn for his tremendous commitment to us to learn these useful topics.
+					<br><br>
+					This demo was developed by <a href="https://www.carlostoxtli.com/">Carlos Toxtli</a>, feel free to contact me, all the feedback is welcome. You can find the code in <a href="https://github.com/toxtli/minimal-fault-detection">this repository on GitHub</a>.
+				</div>
+			</div>
+		</center>
+	</body>
+</html>
